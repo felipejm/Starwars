@@ -9,7 +9,6 @@ android {
 
     compileSdk = Config.compileSdk
 
-
     buildTypes {
         debug {
             buildConfigField("String", "BASE_URL_GRAPHQL", "\"https://swapi-graphql.netlify.app/\"")
@@ -40,7 +39,7 @@ android {
 }
 
 dependencies {
-    Dependencies.Retrofit.setup().forEach{ implementation(it) }
-    Dependencies.Hilt.setup().forEach{ implementation(it) }
-    Dependencies.Hilt.setupCompilers().forEach{ kapt(it) }
+    Dependencies.Retrofit.setup().forEach { implementation(it) }
+    Dependencies.Hilt.setup().forEach { implementation(it) }
+    Dependencies.Hilt.setupCompilers().forEach { kapt(it) }
 }

@@ -54,26 +54,31 @@ android {
             excludes.add("META-INF/gradle/incremental.annotation.processors")
         }
     }
+
+  /*  apollo {
+        packageName.set(Config.applicationId)
+    }*/
 }
 
 dependencies {
-    //Modules
+    // Modules
     implementation(project(Dependencies.Projects.base))
 
-    //Libs
-    Dependencies.AndroidKtx.setup().forEach{ implementation(it) }
-    Dependencies.AppCompat.setup().forEach{ implementation(it) }
-    Dependencies.Retrofit.setup().forEach{ implementation(it) }
-    Dependencies.Coroutines.setup().forEach{ implementation(it) }
+    // Libs
+    Dependencies.ApolloGraphQL.setup().forEach { implementation(it) }
+    Dependencies.AndroidKtx.setup().forEach { implementation(it) }
+    Dependencies.AppCompat.setup().forEach { implementation(it) }
+    Dependencies.Retrofit.setup().forEach { implementation(it) }
+    Dependencies.Coroutines.setup().forEach { implementation(it) }
 
-    Dependencies.Picasso.setup().forEach{ implementation(it) }
-    Dependencies.Navigation.setup().forEach{ implementation(it) }
-    Dependencies.Material.setup().forEach{ implementation(it) }
-    Dependencies.ConstraintLayout.setup().forEach{ implementation(it) }
-    Dependencies.RecyclerView.setup().forEach{ implementation(it) }
+    Dependencies.Picasso.setup().forEach { implementation(it) }
+    Dependencies.Navigation.setup().forEach { implementation(it) }
+    Dependencies.Material.setup().forEach { implementation(it) }
+    Dependencies.ConstraintLayout.setup().forEach { implementation(it) }
+    Dependencies.RecyclerView.setup().forEach { implementation(it) }
 
-    Dependencies.Hilt.setup().forEach{ implementation(it) }
-    Dependencies.Hilt.setupCompilers().forEach{ kapt(it) }
+    Dependencies.Hilt.setup().forEach { implementation(it) }
+    Dependencies.Hilt.setupCompilers().forEach { kapt(it) }
 
-    Dependencies.UnitTest.setup().forEach{ testImplementation(it) }
+    Dependencies.UnitTest.setup().forEach { testImplementation(it) }
 }
