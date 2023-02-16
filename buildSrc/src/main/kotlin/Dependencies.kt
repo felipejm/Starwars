@@ -21,6 +21,22 @@ object Dependencies {
         }
     }
 
+    object Room {
+        const val ROOM_VERSION = "2.2.0"
+
+        val room = "androidx.room:room-runtime:$ROOM_VERSION"
+        val roomKtx = "androidx.room:room-ktx:$ROOM_VERSION"
+        val roomCompiler = "androidx.room:room-compiler:$ROOM_VERSION"
+
+        fun setup(): Array<String> {
+            return arrayOf(room, roomKtx)
+        }
+
+        fun setupCompilers(): Array<String> {
+            return arrayOf(roomCompiler)
+        }
+    }
+
     object Coroutines {
         const val COROUTINES_VERSION = "1.3.4"
 
@@ -54,33 +70,30 @@ object Dependencies {
     }
 
     object Retrofit {
-        const val RETROFIT_VERSION = "1.7.0"
+        const val RETROFIT_VERSION = "2.9.0"
         const val MOSHI_VERSION = "2.4.0"
+        const val MOSHI_KOTLIN_VERSION = "1.14.0"
         const val OKHTTP_VERSION = "4.10.0"
 
         val retrofit = "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
         val moshi = "com.squareup.retrofit2:converter-moshi:$MOSHI_VERSION"
         val okHttp = "com.squareup.okhttp3:okhttp:$OKHTTP_VERSION"
         val okHttpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:$OKHTTP_VERSION"
+        val moshiKotlin = "com.squareup.moshi:moshi-kotlin:$MOSHI_KOTLIN_VERSION"
+
 
         fun setup(): Array<String> {
-            return arrayOf(moshi, retrofit, okHttp, okHttpLoggingInterceptor)
-
-
+            return arrayOf(moshi, retrofit, okHttp, okHttpLoggingInterceptor, moshiKotlin)
         }
     }
-
-
 
     object RecyclerView {
         const val RECYCLER_VIEW_VERSION = "1.2.1"
 
         val recyclerView = "androidx.recyclerview:recyclerview:$RECYCLER_VIEW_VERSION"
 
-
         fun setup(): Array<String> {
             return arrayOf(recyclerView)
-
         }
     }
 
@@ -142,13 +155,17 @@ object Dependencies {
     object UnitTest {
         const val JUNIT_VERSION = "4.13.2"
         const val MOCKK_VERSION = "1.13.4"
+        const val COROUTINES_VERSION = "1.3.4"
+        const val CORE_TESTING_CORE = "2.1.0"
 
         val junit = "junit:junit:$JUNIT_VERSION"
         val mockk = "io.mockk:mockk:$MOCKK_VERSION"
         val mockkAndroid = "io.mockk:mockk-android:$MOCKK_VERSION"
+        val coroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$COROUTINES_VERSION"
+        val coreTesting = "androidx.arch.core:core-testing:$CORE_TESTING_CORE"
 
         fun setup(): Array<String> {
-            return arrayOf(junit, mockk, mockkAndroid)
+            return arrayOf(junit, mockk, mockkAndroid, coroutine, coreTesting)
         }
     }
 }

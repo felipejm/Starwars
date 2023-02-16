@@ -4,6 +4,8 @@ plugins {
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
     id("androidx.navigation.safeargs.kotlin")
+    id("com.apollographql.apollo3")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -25,9 +27,11 @@ android {
     buildTypes {
         debug {
             isMinifyEnabled = false
+            buildConfigField("String", "IMAGE_BASE_URL", "\"https://starwars-visualguide.com/assets/img\"")
         }
         release {
             isMinifyEnabled = false
+            buildConfigField("String", "IMAGE_BASE_URL", "\"https://starwars-visualguide.com/assets/img\"")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
@@ -54,10 +58,12 @@ android {
             excludes.add("META-INF/gradle/incremental.annotation.processors")
         }
     }
+}
 
-  /*  apollo {
+apollo {
+    service("service") {
         packageName.set(Config.applicationId)
-    }*/
+    }
 }
 
 dependencies {
@@ -79,6 +85,9 @@ dependencies {
 
     Dependencies.Hilt.setup().forEach { implementation(it) }
     Dependencies.Hilt.setupCompilers().forEach { kapt(it) }
+
+    Dependencies.Room.setup().forEach { implementation(it) }
+    Dependencies.Room.setupCompilers().forEach { kapt(it) }
 
     Dependencies.UnitTest.setup().forEach { testImplementation(it) }
 }

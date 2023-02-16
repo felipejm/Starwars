@@ -11,10 +11,10 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField("String", "BASE_URL_GRAPHQL", "\"https://swapi-graphql.netlify.app/\"")
+            buildConfigField("String", "BASE_URL_GRAPHQL", "\"https://swapi.dev/\"")
         }
         release {
-            buildConfigField("String", "BASE_URL_GRAPHQL", "\"https://swapi-graphql.netlify.app/\"")
+            buildConfigField("String", "BASE_URL_GRAPHQL", "\"https://swapi.dev/\"")
         }
     }
 
@@ -39,6 +39,7 @@ android {
 }
 
 dependencies {
+    Dependencies.ApolloGraphQL.setup().forEach { implementation(it) }
     Dependencies.Retrofit.setup().forEach { implementation(it) }
     Dependencies.Hilt.setup().forEach { implementation(it) }
     Dependencies.Hilt.setupCompilers().forEach { kapt(it) }

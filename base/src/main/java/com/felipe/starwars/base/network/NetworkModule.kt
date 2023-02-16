@@ -1,5 +1,7 @@
 package com.felipe.starwars.base.network
 
+import com.apollographql.apollo3.ApolloClient
+import com.apollographql.apollo3.network.okHttpClient
 import com.felipe.starwars.base.BuildConfig
 import dagger.Module
 import dagger.Provides
@@ -20,7 +22,8 @@ class NetworkModule {
     @Provides
     @Singleton
     @Named(LOGGING_INTERCEPTOR_NAME)
-    fun provideLoggingInterceptor(): Interceptor = HttpLoggingInterceptor()
+    fun provideLoggingInterceptor(): Interceptor =
+        HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
 
     @Provides
     @Singleton
@@ -38,6 +41,15 @@ class NetworkModule {
         .baseUrl(BuildConfig.BASE_URL_GRAPHQL)
         .client(okHttpClient)
         .addConverterFactory(MoshiConverterFactory.create())
+        .build()
+
+    @Provides
+    @Singleton
+    fun provideApollo(
+        okHttpClient: OkHttpClient
+    ) = ApolloClient.Builder()
+        .okHttpClient(okHttpClient)
+        .serverUrl(BuildConfig.BASE_URL_GRAPHQL)
         .build()
 
     companion object {
