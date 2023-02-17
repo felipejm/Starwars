@@ -2,7 +2,7 @@
 
 Desafio Hurb Android
 
-O desafio consiste em fazer um aplicativo do universo Star Wars, utilizando as api Rest (https://swapi.dev/api/).
+O desafio consiste em fazer um aplicativo do universo Star Wars, utilizando a api Rest (https://swapi.dev/api/).
 
 ## Pontos de atenção:
 
@@ -11,11 +11,11 @@ O desafio consiste em fazer um aplicativo do universo Star Wars, utilizando as a
 ## Requisitos Gerais:
 - AGP: 7.2.1
 - Gradle: 7.3.3
- Min version: 23
- Target Sdk: 30
- Deve ser escrito em Kotlin
- Você pode usar qualquer gerenciador de dependência e qualquer biblioteca de terceiros, só tenha em mente a pergunta; "realmente precisa usar essa biblioteca?"
- Preferência por construção de layout utilizando Constraint Layout.
+- Min version: 23
+- Target Sdk: 30
+- Deve ser escrito em Kotlin
+- Você pode usar qualquer gerenciador de dependência e qualquer biblioteca de terceiros, só tenha em mente a pergunta; "realmente precisa usar essa biblioteca?"
+- Preferência por construção de layout utilizando Constraint Layout.
 
 ## Bibliotecas utilizadas:
 * Kotlin Coroutines
