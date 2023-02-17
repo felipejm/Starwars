@@ -22,7 +22,6 @@ import io.mockk.verify
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.setMain
 import org.junit.Before
 import org.junit.Rule
@@ -76,58 +75,58 @@ class CategoriesViewModelTest {
 
     @Test
     fun `onCreate should return call getCategories`() = runBlocking {
-        //Given
+        // Given
         coEvery { getCategoriesUseCase(CategoriesFilter.LOCAL) } returns flowOf(Response.Success(categories))
 
-        //When
+        // When
         viewModel.onCreate(mockk())
 
-        //Then
+        // Then
         verify { categoryObserver.onChanged(ViewState.Success(categories)) }
     }
 
     @Test
     fun `tryAgain should call getCategories`() = runBlocking {
-        //Given
+        // Given
         coEvery { getCategoriesUseCase(CategoriesFilter.LOCAL) } returns flowOf(Response.Success(categories))
 
-        //When
+        // When
         viewModel.tryAgain()
 
-        //Then
+        // Then
         verify { categoryObserver.onChanged(ViewState.Success(categories)) }
     }
 
     @Test
     fun `onCategoryClicked should send open category detail`() = runBlocking {
-        //Then
+        // Then
         viewModel.onCategoryClicked(categories.first())
 
-        //When
+        // When
         verify { commandObserver.onChanged(CategoriesCommand.OpenCategory(categories.first())) }
     }
 
     @Test
     fun `onFavoriteClicked should save category`() = runBlocking {
-        //Given
+        // Given
         coEvery { saveCategoryUseCase(categories.first()) }
 
-        //When
+        // When
         viewModel.onFavoriteClicked(checked = true, categories.first())
 
-        //When
+        // When
         coVerify { saveCategoryUseCase(eq(categories.first())) }
     }
 
     @Test
     fun `onFavoriteClicked should delete category`() = runBlocking {
-        //Given
+        // Given
         coEvery { deleteCategoryUseCase(categories.first()) }
 
-        //When
+        // When
         viewModel.onFavoriteClicked(checked = false, categories.first())
 
-        //When
+        // When
         coVerify { deleteCategoryUseCase(eq(categories.first())) }
     }
 }
