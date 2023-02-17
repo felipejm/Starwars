@@ -8,9 +8,9 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 @Entity(tableName = "category")
 data class Category(
-    val imageUrl: String,
     @PrimaryKey
     val title: String,
+    val imageUrl: String,
     val detailUrl: String,
     val isFavorite: Boolean
 ) : Parcelable

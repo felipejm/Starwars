@@ -25,7 +25,7 @@ class GetCategoriesUseCaseImpl(
                     getRemote()
             }
         } catch (e: Exception) {
-            flow { Response.Error<List<Category>>(e) }
+            flow { emit(Response.Error(e)) }
         }
     }
 
