@@ -1,65 +1,79 @@
 package com.felipe.starwars.features.category.detail.domain
 
 import com.felipe.starwars.BuildConfig
-import com.felipe.starwars.GetAllFilmsQuery
-import com.felipe.starwars.GetAllPeopleQuery
-import com.felipe.starwars.GetAllPlanetsQuery
-import com.felipe.starwars.GetAllVehiclesQuery
+import com.felipe.starwars.R
+import com.felipe.starwars.features.category.data.response.FilmsResponse
+import com.felipe.starwars.features.category.data.response.PeopleResponse
+import com.felipe.starwars.features.category.data.response.PlanetResponse
 
 interface CategoryDetailMapper {
-    suspend fun parseFilms(category: GetAllFilmsQuery.Data): List<CategoryDetail>
-    suspend fun parsePeople(response: GetAllPeopleQuery.Data): List<CategoryDetail>
-    suspend fun parseVehicles(response: GetAllVehiclesQuery.Data): List<CategoryDetail>
-    suspend fun parsePlanets(response: GetAllPlanetsQuery.Data): List<CategoryDetail>
+    suspend fun parseFilms(category: List<FilmsResponse>): List<CategoryDetail>
+    suspend fun parsePeople(response: List<PeopleResponse>): List<CategoryDetail>
+    suspend fun parsePlanets(response: List<PlanetResponse>): List<CategoryDetail>
 }
 
-class CategoryDetailMapperImpl() : CategoryDetailMapper {
+class CategoryDetailMapperImpl : CategoryDetailMapper {
 
-    override suspend fun parseFilms(response: GetAllFilmsQuery.Data): List<CategoryDetail> {
-        return response.allFilms?.films?.map {
+    override suspend fun parseFilms(response: List<FilmsResponse>): List<CategoryDetail> {
+        return response.map {
+            val imageUrl = parseImageUrl(it.url.orEmpty(), "films")
+
             CategoryDetail(
-                imageUrl = "${BuildConfig.IMAGE_BASE_URL}/films/${it?.id}.jpg",
-                title = it?.title.orEmpty(),
-                firstAttribute = it?.releaseDate.orEmpty(),
-                secondAttribute = it?.created.toString(),
-                thirdAttribute = it?.producers?.joinToString { "," }.toString()
+                imageUrl = imageUrl,
+                title = it.title.orEmpty(),
+                firstAttribute = it.director.orEmpty(),
+                secondAttribute = it.releaseDate.toString(),
+                thirdAttribute = it.producer.orEmpty(),
+                fourthAttribute = it.episodeNumber.orEmpty(),
+                firstAttributeLabel = R.string.category_films_director,
+                secondAttributeLabel = R.string.category_films_release_data,
+                thirdAttributeLabel = R.string.category_films_producer,
+                fourthAttributeLabel = R.string.category_films_episodeNumber,
             )
-        }.orEmpty()
+        }
     }
 
-    override suspend fun parsePeople(response: GetAllPeopleQuery.Data): List<CategoryDetail> {
-        return response.allPeople?.people?.map {
+    override suspend fun parsePeople(response: List<PeopleResponse>): List<CategoryDetail> {
+        return response.map {
+            val imageUrl = parseImageUrl(it.url.orEmpty(), "characters")
+
             CategoryDetail(
-                imageUrl = "${BuildConfig.IMAGE_BASE_URL}/characters/${it?.id}.jpg",
-                title = it?.name.orEmpty(),
-                firstAttribute = it?.gender.orEmpty(),
-                secondAttribute = it?.height.toString(),
-                thirdAttribute = it?.hairColor.toString()
+                imageUrl = imageUrl,
+                title = it.name.orEmpty(),
+                firstAttribute = it.height.orEmpty(),
+                secondAttribute = it.mass.toString(),
+                thirdAttribute = it.gender.toString(),
+                fourthAttribute = it.birthYear.orEmpty(),
+                firstAttributeLabel = R.string.category_people_height,
+                secondAttributeLabel = R.string.category_people_mass,
+                thirdAttributeLabel = R.string.category_people_gender,
+                fourthAttributeLabel = R.string.category_people_birthYear,
             )
-        }.orEmpty()
+        }
     }
 
-    override suspend fun parseVehicles(response: GetAllVehiclesQuery.Data): List<CategoryDetail> {
-        return response.allVehicles?.vehicles?.map {
+    override suspend fun parsePlanets(response: List<PlanetResponse>): List<CategoryDetail> {
+        return response.map {
+            val imageUrl = parseImageUrl(it.url.orEmpty(), "planets")
+
             CategoryDetail(
-                imageUrl = "${BuildConfig.IMAGE_BASE_URL}/vehicles/${it?.id}.jpg",
-                title = it?.name.orEmpty(),
-                firstAttribute = it?.model.orEmpty(),
-                secondAttribute = it?.passengers.toString(),
-                thirdAttribute = it?.maxAtmospheringSpeed.toString()
+                imageUrl = imageUrl,
+                title = it.name.orEmpty(),
+                firstAttribute = it.climate.toString(),
+                secondAttribute = it.gravity.toString(),
+                thirdAttribute = it.terrain.toString(),
+                fourthAttribute = it.population.orEmpty(),
+                firstAttributeLabel = R.string.category_planets_climate,
+                secondAttributeLabel = R.string.category_planets_gravity,
+                thirdAttributeLabel = R.string.category_planets_terrain,
+                fourthAttributeLabel = R.string.category_planets_population,
             )
-        }.orEmpty()
+        }
     }
 
-    override suspend fun parsePlanets(response: GetAllPlanetsQuery.Data): List<CategoryDetail> {
-        return response.allPlanets?.planets?.map {
-            CategoryDetail(
-                imageUrl = "${BuildConfig.IMAGE_BASE_URL}/planets/${it?.id}.jpg",
-                title = it?.name.orEmpty(),
-                firstAttribute = it?.diameter.toString(),
-                secondAttribute = it?.gravity.toString(),
-                thirdAttribute = it?.edited.toString()
-            )
-        }.orEmpty()
+    private fun parseImageUrl(url: String, category: String): String {
+        val url = url.dropLast(1)
+        val id = url.substring(url.lastIndexOf("/") + 1)
+        return "${BuildConfig.IMAGE_BASE_URL}/$category/$id.jpg"
     }
 }

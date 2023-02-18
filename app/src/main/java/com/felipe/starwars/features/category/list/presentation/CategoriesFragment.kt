@@ -9,10 +9,10 @@ import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.felipe.starwars.base.presentation.ViewState
 import com.felipe.starwars.databinding.FragmentCategoriesBinding
+import com.felipe.starwars.features.category.detail.presentation.CategoriesDetailActivity
 import com.felipe.starwars.features.category.list.CategoriesFilter
 import com.felipe.starwars.features.category.list.domain.Category
 import dagger.hilt.android.AndroidEntryPoint
@@ -64,9 +64,7 @@ class CategoriesFragment : Fragment() {
         viewModel.commandLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is CategoriesCommand.OpenCategory -> {
-                    findNavController().navigate(
-                        CategoriesFragmentDirections.categoriesFragmentToDetail(it.category)
-                    )
+                    startActivity(CategoriesDetailActivity.intent(requireContext(), it.category))
                 }
             }
         }

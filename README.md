@@ -17,6 +17,10 @@ O desafio consiste em fazer um aplicativo do universo Star Wars, utilizando a ap
 - Você pode usar qualquer gerenciador de dependência e qualquer biblioteca de terceiros, só tenha em mente a pergunta; "realmente precisa usar essa biblioteca?"
 - Preferência por construção de layout utilizando Constraint Layout.
 
+## Arquitetura utilizada:
+
+* Clean Architecture + MVVM
+
 ## Bibliotecas utilizadas:
 * Kotlin Coroutines
 * Architecture Components (LiveData, ViewModel)
@@ -26,4 +30,3 @@ O desafio consiste em fazer um aplicativo do universo Star Wars, utilizando a ap
 * Moshi
 * Picasso
 * Room
-

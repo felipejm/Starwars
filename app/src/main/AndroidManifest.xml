@@ -23,6 +23,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".features.category.detail.presentation.CategoriesDetailActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.StarWars">
+        </activity>
     </application>
 
 </manifest>

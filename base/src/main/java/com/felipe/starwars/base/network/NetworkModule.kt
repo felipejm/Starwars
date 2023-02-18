@@ -1,8 +1,8 @@
 package com.felipe.starwars.base.network
 
-import com.apollographql.apollo3.ApolloClient
-import com.apollographql.apollo3.network.okHttpClient
 import com.felipe.starwars.base.BuildConfig
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -36,20 +36,18 @@ class NetworkModule {
     @Provides
     @Singleton
     fun provideRetrofit(
-        okHttpClient: OkHttpClient
+        okHttpClient: OkHttpClient,
+        moshi: Moshi
     ) = Retrofit.Builder()
-        .baseUrl(BuildConfig.BASE_URL_GRAPHQL)
+        .baseUrl(BuildConfig.BASE_URL)
         .client(okHttpClient)
-        .addConverterFactory(MoshiConverterFactory.create())
+        .addConverterFactory(MoshiConverterFactory.create(moshi))
         .build()
 
     @Provides
     @Singleton
-    fun provideApollo(
-        okHttpClient: OkHttpClient
-    ) = ApolloClient.Builder()
-        .okHttpClient(okHttpClient)
-        .serverUrl(BuildConfig.BASE_URL_GRAPHQL)
+    fun provideMoshi() = Moshi.Builder()
+        .addLast(KotlinJsonAdapterFactory())
         .build()
 
     companion object {

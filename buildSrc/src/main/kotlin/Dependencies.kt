@@ -47,18 +47,6 @@ object Dependencies {
         }
     }
 
-    object Navigation {
-        const val NAVIGATION_VERSION = "2.5.3"
-
-        val navigationFragment = "androidx.navigation:navigation-fragment-ktx:$NAVIGATION_VERSION"
-        val navigationUi = "androidx.navigation:navigation-ui-ktx:$NAVIGATION_VERSION"
-        val navigationSafeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:$NAVIGATION_VERSION"
-
-        fun setup(): Array<String> {
-            return arrayOf(navigationUi, navigationFragment)
-        }
-    }
-
     object Picasso {
         const val PICASSO_VERSION = "2.8"
 
@@ -94,16 +82,6 @@ object Dependencies {
 
         fun setup(): Array<String> {
             return arrayOf(recyclerView)
-        }
-    }
-
-    object ApolloGraphQL {
-        const val APOLLO_VERSION = "3.7.3"
-
-        val apolloGraphQL = "com.apollographql.apollo3:apollo-runtime:$APOLLO_VERSION"
-
-        fun setup(): Array<String> {
-            return arrayOf(apolloGraphQL)
         }
     }
 

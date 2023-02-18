@@ -1,23 +1,21 @@
 package com.felipe.starwars.features.category.data
 
 import com.apollographql.apollo3.ApolloClient
-import com.apollographql.apollo3.api.ApolloResponse
-import com.felipe.starwars.GetAllFilmsQuery
-import com.felipe.starwars.GetAllPeopleQuery
-import com.felipe.starwars.GetAllPlanetsQuery
-import com.felipe.starwars.GetAllVehiclesQuery
+import com.felipe.starwars.features.category.data.response.CategoryDetailPagedResponse
+import com.felipe.starwars.features.category.data.response.FilmsResponse
+import com.felipe.starwars.features.category.data.response.PeopleResponse
+import com.felipe.starwars.features.category.data.response.PlanetResponse
 import com.felipe.starwars.features.category.list.domain.Category
 import kotlinx.coroutines.flow.Flow
 
 interface CategoriesRepository {
     suspend fun getCategories(): Map<String, String>
-    suspend fun getPlanets(): ApolloResponse<GetAllPlanetsQuery.Data>
-    suspend fun getPeople(): ApolloResponse<GetAllPeopleQuery.Data>
-    suspend fun getVehicles(): ApolloResponse<GetAllVehiclesQuery.Data>
-    suspend fun getFilms(): ApolloResponse<GetAllFilmsQuery.Data>
     suspend fun saveLocal(category: Category): Long
     suspend fun deleteLocal(category: Category): Int
     fun getAllLocal(): Flow<List<Category>>
+    suspend fun getPeople(): CategoryDetailPagedResponse<PeopleResponse>
+    suspend fun getPlanets(): CategoryDetailPagedResponse<PlanetResponse>
+    suspend fun getFilms(): CategoryDetailPagedResponse<FilmsResponse>
 }
 
 class CategoriesRepositoryImpl(
@@ -42,19 +40,15 @@ class CategoriesRepositoryImpl(
         return dao.getAll()
     }
 
-    override suspend fun getPlanets(): ApolloResponse<GetAllPlanetsQuery.Data> {
-        return apolloClient.query(GetAllPlanetsQuery()).execute()
+    override suspend fun getPeople(): CategoryDetailPagedResponse<PeopleResponse> {
+        return api.getPeople()
     }
 
-    override suspend fun getPeople(): ApolloResponse<GetAllPeopleQuery.Data> {
-        return apolloClient.query(GetAllPeopleQuery()).execute()
+    override suspend fun getPlanets(): CategoryDetailPagedResponse<PlanetResponse> {
+        return api.getPlanets()
     }
 
-    override suspend fun getVehicles(): ApolloResponse<GetAllVehiclesQuery.Data> {
-        return apolloClient.query(GetAllVehiclesQuery()).execute()
-    }
-
-    override suspend fun getFilms(): ApolloResponse<GetAllFilmsQuery.Data> {
-        return apolloClient.query(GetAllFilmsQuery()).execute()
+    override suspend fun getFilms(): CategoryDetailPagedResponse<FilmsResponse> {
+        return api.getFilms()
     }
 }

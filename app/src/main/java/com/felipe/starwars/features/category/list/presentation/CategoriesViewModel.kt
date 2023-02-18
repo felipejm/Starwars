@@ -1,5 +1,6 @@
 package com.felipe.starwars.features.category.list.presentation
 
+import android.util.Log
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -44,7 +45,7 @@ class CategoriesViewModel @Inject constructor(
     }
 
     fun onCategoryClicked(category: Category) {
-        _commandLiveData.value = CategoriesCommand.OpenCategory(category)
+        _commandLiveData.value = CategoriesCommand.OpenCategory(category.title)
     }
 
     fun onFavoriteClicked(checked: Boolean, category: Category) {
@@ -71,8 +72,10 @@ class CategoriesViewModel @Inject constructor(
                         } else {
                             ViewState.Success(response.value)
                         }
-                    is Response.Error ->
+                    is Response.Error -> {
                         _categoriesLiveData.value = ViewState.Error(response.error)
+                        Log.e("CategoriesViewModel", "loadCategories", response.error)
+                    }
                 }
             }
         }

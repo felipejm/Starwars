@@ -15,5 +15,18 @@
     <string name="try_again">Tentar Novamente</string>
     <string name="unexpected_error">Aconteceu um erro inesperado.</string>
     <string name="no_categories">Nenhuma categoria encontrada</string>
+    <string name="category_films_director">Director:&#160;</string>
+    <string name="category_films_release_data">Release date:&#160;</string>
+    <string name="category_films_producer">Producer:&#160;</string>
+    <string name="category_films_episodeNumber">Episode number:&#160;</string>
+    <string name="category_people_height">Height:&#160;</string>
+    <string name="category_people_mass">Mass:&#160;</string>
+    <string name="category_people_gender">Gender:&#160;</string>
+    <string name="category_people_birthYear">Birth year:</string>
+    <string name="category_planets_climate">Climate:&#160;</string>
+    <string name="category_planets_gravity">Gravity:&#160;</string>
+    <string name="category_planets_terrain">Terrain:&#160;</string>
+    <string name="category_planets_population">Population:&#160;</string>
+
 
 </resources>
