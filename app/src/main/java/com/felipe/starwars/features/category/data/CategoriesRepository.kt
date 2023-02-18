@@ -1,6 +1,5 @@
 package com.felipe.starwars.features.category.data
 
-import com.apollographql.apollo3.ApolloClient
 import com.felipe.starwars.features.category.data.response.CategoryDetailPagedResponse
 import com.felipe.starwars.features.category.data.response.FilmsResponse
 import com.felipe.starwars.features.category.data.response.PeopleResponse
@@ -19,7 +18,6 @@ interface CategoriesRepository {
 }
 
 class CategoriesRepositoryImpl(
-    private val apolloClient: ApolloClient,
     private val api: CategoryApi,
     private val dao: CategoryDao
 ) : CategoriesRepository {

@@ -1,6 +1,9 @@
 package com.felipe.starwars.features.category.data
 
-import com.apollographql.apollo3.ApolloClient
+import com.felipe.starwars.features.category.data.response.CategoryDetailPagedResponse
+import com.felipe.starwars.features.category.data.response.FilmsResponse
+import com.felipe.starwars.features.category.data.response.PeopleResponse
+import com.felipe.starwars.features.category.data.response.PlanetResponse
 import com.felipe.starwars.features.category.list.domain.Category
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
@@ -21,9 +24,6 @@ class CategoriesRepositoryTest {
     @InjectMockKs
     lateinit var repository: CategoriesRepositoryImpl
 
-    @MockK
-    lateinit var apolloClient: ApolloClient
-
     @RelaxedMockK
     lateinit var api: CategoryApi
 
@@ -43,6 +43,45 @@ class CategoriesRepositoryTest {
 
         // When
         val result = repository.getCategories()
+
+        // Then
+        Assert.assertEquals(expected, result)
+    }
+
+    @Test
+    fun `getFilms should return films`() = runBlocking {
+        // Given
+        val expected = mockk<CategoryDetailPagedResponse<FilmsResponse>>()
+        coEvery { api.getFilms() } returns expected
+
+        // When
+        val result = repository.getFilms()
+
+        // Then
+        Assert.assertEquals(expected, result)
+    }
+
+    @Test
+    fun `getPeople should return films`() = runBlocking {
+        // Given
+        val expected = mockk<CategoryDetailPagedResponse<PeopleResponse>>()
+        coEvery { api.getPeople() } returns expected
+
+        // When
+        val result = repository.getPeople()
+
+        // Then
+        Assert.assertEquals(expected, result)
+    }
+
+    @Test
+    fun `getPlanets should return films`() = runBlocking {
+        // Given
+        val expected = mockk<CategoryDetailPagedResponse<PlanetResponse>>()
+        coEvery { api.getPlanets() } returns expected
+
+        // When
+        val result = repository.getPlanets()
 
         // Then
         Assert.assertEquals(expected, result)

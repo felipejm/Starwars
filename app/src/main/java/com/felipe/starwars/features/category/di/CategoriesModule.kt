@@ -1,6 +1,5 @@
 package com.felipe.starwars.features.category.di
 
-import com.apollographql.apollo3.ApolloClient
 import com.felipe.starwars.AppDatabase
 import com.felipe.starwars.features.category.data.CategoriesRepository
 import com.felipe.starwars.features.category.data.CategoriesRepositoryImpl
@@ -30,10 +29,9 @@ class CategoriesModule {
 
     @Provides
     fun provideCategoriesRepository(
-        client: ApolloClient,
         api: CategoryApi,
         dao: CategoryDao
-    ): CategoriesRepository = CategoriesRepositoryImpl(client, api, dao)
+    ): CategoriesRepository = CategoriesRepositoryImpl(api, dao)
 
     @Provides
     fun provideGetCategoriesUseCase(

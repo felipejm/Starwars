@@ -3,9 +3,9 @@ package com.felipe.starwars.features.category.data.response
 import com.squareup.moshi.Json
 
 data class CategoryDetailPagedResponse<T>(
-    @Json(name = "count") val count: Int?,
-    @Json(name = "previous") val previous: String?,
-    @Json(name = "next") val next: String?,
+    @Json(name = "count") val count: Int? = null,
+    @Json(name = "previous") val previous: String? = null,
+    @Json(name = "next") val next: String? = null,
     @Json(name = "results") val results: List<T>?,
 )
 

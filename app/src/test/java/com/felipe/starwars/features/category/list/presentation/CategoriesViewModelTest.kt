@@ -103,7 +103,7 @@ class CategoriesViewModelTest {
         viewModel.onCategoryClicked(categories.first())
 
         // When
-        verify { commandObserver.onChanged(CategoriesCommand.OpenCategory(categories.first())) }
+        verify { commandObserver.onChanged(CategoriesCommand.OpenCategory(categories.first().title)) }
     }
 
     @Test
