@@ -4,9 +4,9 @@ Desafio Hurb Android
 
 O desafio consiste em fazer um aplicativo do universo Star Wars, utilizando a api Rest (https://swapi.dev/api/).
 
-[App1](/app1.png)
-[App1](/app2.png)
-[App1](/app3.png)
+![App1](/app1.png)
+![App1](/app2.png)
+![App1](/app3.png)
 
 ## Pontos de atenção:
 
