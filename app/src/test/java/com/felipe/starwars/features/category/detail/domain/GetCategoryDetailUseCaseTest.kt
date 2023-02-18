@@ -6,13 +6,8 @@ import com.felipe.starwars.features.category.data.response.CategoryDetailPagedRe
 import com.felipe.starwars.features.category.data.response.FilmsResponse
 import com.felipe.starwars.features.category.data.response.PeopleResponse
 import com.felipe.starwars.features.category.data.response.PlanetResponse
-import com.felipe.starwars.features.category.list.CategoriesFilter
-import com.felipe.starwars.features.category.list.domain.Category
-import com.felipe.starwars.features.category.list.domain.CategoryMapper
-import com.felipe.starwars.features.category.list.domain.GetCategoriesUseCaseImpl
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
-import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
 import io.mockk.mockk

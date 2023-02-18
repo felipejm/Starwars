@@ -7,17 +7,8 @@ import com.felipe.starwars.base.presentation.Response
 import com.felipe.starwars.base.presentation.ViewState
 import com.felipe.starwars.features.category.detail.domain.CategoryDetail
 import com.felipe.starwars.features.category.detail.domain.GetCategoryDetailUseCase
-import com.felipe.starwars.features.category.list.CategoriesFilter
-import com.felipe.starwars.features.category.list.domain.Category
-import com.felipe.starwars.features.category.list.domain.DeleteCategoryUseCase
-import com.felipe.starwars.features.category.list.domain.GetCategoriesUseCase
-import com.felipe.starwars.features.category.list.domain.SaveCategoryUseCase
-import com.felipe.starwars.features.category.list.presentation.CategoriesCommand
-import com.felipe.starwars.features.category.list.presentation.CategoriesFragment
-import com.felipe.starwars.features.category.list.presentation.CategoriesViewModel
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
-import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK

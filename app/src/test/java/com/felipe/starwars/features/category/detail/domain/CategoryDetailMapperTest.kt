@@ -1,17 +1,10 @@
 package com.felipe.starwars.features.category.detail.domain
 
 import com.felipe.starwars.R
-import com.felipe.starwars.base.presentation.Response
-import com.felipe.starwars.features.category.data.CategoriesRepository
-import com.felipe.starwars.features.category.data.response.CategoryDetailPagedResponse
 import com.felipe.starwars.features.category.data.response.FilmsResponse
 import com.felipe.starwars.features.category.data.response.PeopleResponse
 import com.felipe.starwars.features.category.data.response.PlanetResponse
-import io.mockk.MockKAnnotations
-import io.mockk.coEvery
-import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
-import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
 import org.junit.Before
@@ -29,7 +22,7 @@ class CategoryDetailMapperTest {
 
     @Test
     fun `should map people`() = runBlocking {
-        //Given
+        // Given
         val response = PeopleResponse(
             name = "name",
             height = "height",
@@ -61,7 +54,7 @@ class CategoryDetailMapperTest {
 
     @Test
     fun `should map planets`() = runBlocking {
-        //Given
+        // Given
         val response = PlanetResponse(
             name = "name",
             climate = "climate",
@@ -91,10 +84,9 @@ class CategoryDetailMapperTest {
         Assert.assertEquals(listOf(expected), result)
     }
 
-
     @Test
     fun `should map films`() = runBlocking {
-        //Given
+        // Given
         val response = FilmsResponse(
             title = "name",
             director = "director",
